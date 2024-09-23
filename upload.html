@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar Archivos</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1f1f1f;
+            color: #ffffff;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 20px; /* Espacio entre los contenedores */
+        }
+
+        .container {
+            background-color: #2d2d2d;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .container form {
+            margin-bottom: 20px;
+        }
+
+        .container label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+            color: #b0b0b0;
+        }
+
+        .container input[type="file"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #1f1f1f;
+            color: #ffffff;
+        }
+
+        .container input[type="submit"],
+        .container button {
+            background-color: #00d4ff;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .container input[type="submit"]:hover,
+        .container button:hover {
+            background-color: #00b8e6;
+        }
+
+        .container .logout-button {
+            background-color: #e74c3c;
+            margin-top: 10px;
+        }
+
+        .container .logout-button:hover {
+            background-color: #c0392b;
+        }
+
+        .container progress {
+            width: 100%;
+            height: 20px;
+            margin-bottom: 10px;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .container progress::-webkit-progress-bar {
+            background-color: #444;
+            border-radius: 5px;
+        }
+
+        .container progress::-webkit-progress-value {
+            background-color: #00d4ff;
+            border-radius: 5px;
+        }
+
+        .instructions {
+            background-color: #2d2d2d;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            width: 100%;
+            color: #ffffff;
+            position: relative; /* Añadido para la posición absoluta del botón */
+        }
+
+        .instructions h2 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .instructions p {
+            font-size: 14px;
+            color: #b0b0b0;
+            line-height: 1.5;
+        }
+
+        .instructions .btn-instructions {
+            display: inline-block;
+            background-color: #00d4ff;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .instructions .btn-instructions:hover {
+            background-color: #00b8e6;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: gray;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: gray;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <!-- Contenedor principal de carga de archivos -->
+        <div class="container">
+            <h1>Carga de Archivos</h1>
+            <form id="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
+                <label for="file">Selecciona el Archivo:</label>
+                <input type="file" id="file" name="file" required>
+                <input type="submit" value="Subir Archivo">
+            </form>
+
+            <div id="progressWrapper" style="display:none;">
+                <progress id="progressBar" value="0" max="100"></progress>
+                <span id="progressText">0%</span>
+            </div>
+
+            <div id="successMessage" style="display:none;">
+                <p>Archivo cargado exitosamente.</p>
+                <button onclick="window.location.href='upload.html';">Volver a la página principal</button>
+            </div>
+
+            <button class="logout-button" onclick="window.location.href='logout.php';">Cerrar Sesión</button>
+        </div>
+
+        <!-- Contenedor lateral para las instrucciones -->
+        <div class="instructions">
+            <h2>Instrucciones de Uso</h2>
+            <p>1. Reune tus archvos más importantes en una carpeta en tu escritorio</p>
+            <p>2. Comprime la carpeta en un archivo .rar o .zip con el nombre de tu área</p>
+            <p>3. Seleccione el archivo haciendo clic en "Selecciona el Archivo".</p>
+            <p>4. Haga clic en "Subir Archivo" para iniciar el proceso de carga.</p>
+            <p>5. Espere a que la barra de progreso alcance el 100%.</p>
+            <p>6. Una vez cargado, recibirá una notificación de éxito.</p>
+            <a href="https://www.youtube.com/watch?v=LOSnV4stFLQ" target="_blank" class="btn-instructions">Cómo Comprimir Archivos</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>File Secure System by LIRP</p>
+        <p>Consulta los <a href="http://tula.gob.mx" target="_blank">términos de privacidad</a></p>
+    </div>
+
+    <script>
+        // Verificar la autenticación al cargar la página
+        function checkAuthentication() {
+            // Verifica si la cookie de autenticación está presente
+            var cookies = document.cookie.split(';');
+            var isAuthenticated = cookies.some(function(cookie) {
+                return cookie.trim().startsWith('authenticated=true');
+            });
+
+            if (!isAuthenticated) {
+                // Redirige al login si no está autenticado
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Llama a la función para verificar autenticación
+        checkAuthentication();
+
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var form = e.target;
+            var formData = new FormData(form);
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('POST', form.action, true);
+
+            xhr.upload.onprogress = function(event) {
+                if (event.lengthComputable) {
+                    var percentComplete = Math.round((event.loaded / event.total) * 100);
+                    document.getElementById('progressBar').value = percentComplete;
+                    document.getElementById('progressText').textContent = percentComplete + '%';
+                }
+            };
+
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    document.getElementById('progressWrapper').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                }
+            };
+
+            document.getElementById('progressWrapper').style.display = 'block';
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>

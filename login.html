@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('imagen/images3.jpg') no-repeat center center fixed;
+            background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+            color: #ffffff;
+        }
+
+        .login-container {
+            background: #333;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background-color: #222;
+            color: #ffffff;
+        }
+
+        .login-container input[type="text"]::placeholder,
+        .login-container input[type="password"]::placeholder {
+            color: #888;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #00d4ff;
+            color: #ffffff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #00b8e6;
+        }
+
+        .login-container .no-user {
+            margin-top: 20px;
+            color: #00d4ff;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #888;
+            padding: 10px;
+            width: 100%;
+            background-color: #1f1f1f;
+            border-top: 1px solid #333;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Sistema de Respaldo</h1>
+        <form action="login.php" method="post">
+            <input type="text" name="username" placeholder="Usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="submit" value="Ingresar">
+        </form>
+        <div class="no-user" onclick="showNoUserMessage()">¿No tienes usuario?</div>
+    </div>
+
+    <div class="footer">
+        <p>File Secure System by LIRP</p>
+        <p>Consulta los <a href="http://tula.gob.mx" target="_blank">términos de privacidad</a></p>
+    </div>
+
+    <script>
+        function showNoUserMessage() {
+            alert("Contacta al área de sistemas para que te asigne un usuario y contraseña.");
+        }
+    </script>
+</body>
+</html>

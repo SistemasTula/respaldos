@@ -1,0 +1,33 @@
+Configuración de PHP para manejar archivos grandes:
+
+Abre el archivo php.ini, que se encuentra en la carpeta C:\xampp\php\.
+Asegúrate de que los siguientes valores estén configurados adecuadamente para permitir la subida de archivos de hasta 20 GB:
+upload_max_filesize = 20G
+post_max_size = 20G
+max_execution_time = 3600
+max_input_time = 3600
+memory_limit = 256M
+***********************************************************************************
+Estructura de la base de datos
+Creación de la base de datos y tablas:
+
+Accede a phpMyAdmin desde el panel de control de XAMPP.
+Crea una nueva base de datos llamada file_upload.
+Crea las siguientes tablas dentro de la base de datos:
+Tabla users:
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+***********************************************************************************
+Tabla files:
+CREATE TABLE files (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    file_name VARCHAR(255) NOT NULL,
+    file_path VARCHAR(255) NOT NULL,
+    upload_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+

@@ -1,0 +1,5 @@
+se implementan medidas de seguridad, como:
+setcookie("authenticated", "true", time() + 3600, "/"); // La cookie dura 1 hora
+// Si el acceso no es POST, redirigir al login
+    header('Location: login.html');
+    exit();
